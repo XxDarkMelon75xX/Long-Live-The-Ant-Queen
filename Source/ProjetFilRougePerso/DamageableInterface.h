@@ -7,16 +7,14 @@
 #include "DamageableInterface.generated.h"
 
 // This class does not need to be modified.
-UINTERFACE(MinimalAPI)
+// UINTERFACE(MinimalAPI)
+UINTERFACE(Blueprintable)
 class UDamageableInterface : public UInterface
 {
 	GENERATED_BODY()
 };
 
-/**
- * 
- */
-class PROJETFILROUGEPERSO_API IDamageableInterface
+class PROJETFILROUGEPERSO_API IDamageableInterface : public IInterface
 {
 	GENERATED_BODY()
 
@@ -29,6 +27,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Damage")
 	bool IsDead() const;
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Damage")
+	void OnDeath();
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:

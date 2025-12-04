@@ -29,26 +29,34 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Health")
 	float CurrentHealth;
 
+	UPROPERTY(VisibleAnywhere)
+	class USphereComponent* ContactDamageZone;
+
+	UPROPERTY(EditAnywhere, Category = "Damage")
+	float ContactDamage = 15.0f;
+
 public:	
 	UPROPERTY(BlueprintAssignable, Category = "Events")
 	FOnHealthChanged OnHealthChanged;
 
 	UPROPERTY(BlueprintAssignable, Category = "Events")
 	FOnDeath OnDeath;
-
+	
 	virtual void ApplyDamage_Implementation(float Damage) override;
+	
 	virtual void ApplyHeal_Implementation(float HealAmount) override;
-	virtual bool IsDead_Implementation() const override { return CurrentHealth <= 0.0f; };
+	virtual bool IsDead_Implementation() const override;
+	virtual void OnDeath_Implementation() override;
 
 	UFUNCTION(BlueprintCallable, Category = "Health")
 	float GetCurrentHealth() const { return CurrentHealth; }
 
 	UFUNCTION(BlueprintCallable, Category = "Health")
 	float GetMaxHealth() const { return MaxHealth; }
-
-	UFUNCTION(BlueprintCallable, Category = "Health")
-	float SetMaxHealth(float NewMaxHealth) { MaxHealth = NewMaxHealth; return NewMaxHealth; }
-
 	
-		
+	UFUNCTION(BlueprintCallable, Category = "Health")
+	void SetMaxHealth(float NewMaxHealth);
+
+protected:
+	void HandleDeath();
 };
