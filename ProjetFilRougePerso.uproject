@@ -1,13 +1,16 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.6",
+	"EngineAssociation": "{E766F1B5-4A1C-DBDC-EBB1-8E8250650954}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
 		{
 			"Name": "ProjetFilRougePerso",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
 		}
 	],
 	"Plugins": [
